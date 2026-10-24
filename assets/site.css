@@ -1,0 +1,181 @@
+/* FuelLog's site: the app's Dusk and Day colours (docs/design/system/tokens.json) and its one face. */
+
+@font-face {
+  font-family: "Martian Mono";
+  src: url("fonts/MartianMono-Condensed-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Martian Mono";
+  src: url("fonts/MartianMono-Condensed-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  --ground: #0d1320;
+  --surface: #141b2a;
+  --line: #263149;
+  --ink: #eee7db;
+  --ink-muted: #a7afbf;
+  --amber: #f2a93b;
+  --amber-ink: #f2a93b;
+  --on-amber: #1a1206;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ground: #f3eee6;
+    --surface: #fbf8f3;
+    --line: #ddd3c3;
+    --ink: #161b26;
+    --ink-muted: #525a69;
+    --amber: #e39a2f;
+    --amber-ink: #965300;
+    color-scheme: light;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Martian Mono", ui-monospace, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ground);
+}
+
+main,
+header,
+footer {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
+header a.name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 32px 0 8px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 40px 0 8px;
+}
+
+h3 {
+  font-size: 1rem;
+  margin: 24px 0 4px;
+}
+
+p,
+li {
+  max-width: 60ch;
+}
+
+a {
+  color: var(--amber-ink);
+}
+
+.lead {
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 4px 20px 12px;
+  margin: 16px 0;
+}
+
+.button {
+  display: inline-block;
+  background: var(--amber);
+  color: var(--on-amber);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin: 8px 8px 0 0;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+footer {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 8px 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
