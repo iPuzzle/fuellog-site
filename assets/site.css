@@ -76,18 +76,20 @@ header {
 
 header a.name {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 1.4rem;
   text-decoration: none;
 }
 
+/* The brand kit's horizontal logo: never under 120 px wide, its clear space the icon's height. */
 header img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  display: block;
+  width: auto;
+  height: 28px;
+}
+
+@media (min-width: 30rem) {
+  header img {
+    height: 36px;
+  }
 }
 
 h1,

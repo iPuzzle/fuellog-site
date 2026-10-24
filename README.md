@@ -11,4 +11,4 @@ app, so that the privacy policy always matches what the app does, and published 
 Questions: easyfuellog@gmail.com.
 
 The font is Martian Mono, under the SIL Open Font License ([assets/fonts/OFL.txt](assets/fonts/OFL.txt)).
-The icons in `assets/` are the app's brand kit's web set, copied there by the app's build.
+The icons, the logo and the social cards in `assets/` are the app's brand kit's, copied there by the app's build.
