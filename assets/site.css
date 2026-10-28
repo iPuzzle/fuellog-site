@@ -24,12 +24,27 @@
 :root {
   --ground: #0d1320;
   --surface: #141b2a;
+  --surface-raised: #1b2436;
+  --surface-sunken: #0a0f19;
   --line: #263149;
+  --line-strong: #66748f;
   --ink: #eee7db;
   --ink-muted: #a7afbf;
+  --ink-faint: #838ca1;
   --amber: #f2a93b;
   --amber-ink: #f2a93b;
+  --amber-soft: #3a2a12;
   --on-amber: #1a1206;
+  --bronze: #c29a6b;
+  --good: #3fb68b;
+  --energy-petrol: #e9a23b;
+  --energy-lpg: #2bb39a;
+  --energy-electric: #5b8df5;
+  --haze: rgba(142, 163, 200, 0.2);
+  --focus: #f2a93b;
+  /* Dusk separates layers by tone, not shadow. */
+  --elevation-1: none;
+  --elevation-2: none;
   color-scheme: dark;
 }
 
@@ -37,11 +52,25 @@
   :root {
     --ground: #f3eee6;
     --surface: #fbf8f3;
+    --surface-raised: #ffffff;
+    --surface-sunken: #ece5d9;
     --line: #ddd3c3;
+    --line-strong: #918470;
     --ink: #161b26;
     --ink-muted: #525a69;
+    --ink-faint: #5e6574;
     --amber: #e39a2f;
     --amber-ink: #965300;
+    --amber-soft: #fbe7c6;
+    --bronze: #7e5a30;
+    --good: #17704f;
+    --energy-petrol: #b86e00;
+    --energy-lpg: #00876c;
+    --energy-electric: #2155c8;
+    --haze: rgba(126, 90, 48, 0.16);
+    --focus: #965300;
+    --elevation-1: 0 1px 2px rgba(60, 44, 20, 0.08), 0 2px 8px rgba(60, 44, 20, 0.06);
+    --elevation-2: 0 4px 12px rgba(60, 44, 20, 0.1), 0 12px 32px rgba(60, 44, 20, 0.1);
     color-scheme: light;
   }
 }
@@ -193,4 +222,675 @@ td {
   h1 {
     font-size: 1.5rem;
   }
+}
+
+a:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   The home page (body.home): a wider page with the app's own screens, the haze and the icons.
+   The privacy policy and the terms keep the narrow reading column above.
+   --------------------------------------------------------------------------------------------- */
+
+.home header,
+.home footer,
+.home .wrap {
+  max-width: 72rem;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 40rem) {
+  .home header,
+  .home footer,
+  .home .wrap {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.home main {
+  max-width: none;
+  padding: 0;
+}
+
+.home .wrap {
+  margin: 0 auto;
+}
+
+.home header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+.home header nav a {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.home header nav a:hover {
+  color: var(--ink);
+}
+
+.home header .hide-s {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  .home header .hide-s {
+    display: inline;
+  }
+}
+
+/* Icons: the design system's Material Symbols, tinted from tokens through a mask. */
+.ic {
+  display: inline-block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  -webkit-mask: var(--i) center / contain no-repeat;
+  mask: var(--i) center / contain no-repeat;
+}
+
+.i-boat {
+  --i: url("icons/boat.svg");
+}
+
+.i-bus {
+  --i: url("icons/bus.svg");
+}
+
+.i-car {
+  --i: url("icons/car.svg");
+}
+
+.i-documents {
+  --i: url("icons/documents.svg");
+}
+
+.i-done {
+  --i: url("icons/done.svg");
+}
+
+.i-generator {
+  --i: url("icons/generator.svg");
+}
+
+.i-maintenance {
+  --i: url("icons/maintenance.svg");
+}
+
+.i-motorcycle {
+  --i: url("icons/motorcycle.svg");
+}
+
+.i-offline {
+  --i: url("icons/offline.svg");
+}
+
+.i-receipt {
+  --i: url("icons/receipt.svg");
+}
+
+.i-repair {
+  --i: url("icons/repair.svg");
+}
+
+.i-settings {
+  --i: url("icons/settings.svg");
+}
+
+.i-synced {
+  --i: url("icons/synced.svg");
+}
+
+.i-tires {
+  --i: url("icons/tires.svg");
+}
+
+.i-tractor {
+  --i: url("icons/tractor.svg");
+}
+
+.i-truck {
+  --i: url("icons/truck.svg");
+}
+
+.i-van {
+  --i: url("icons/van.svg");
+}
+
+.label {
+  color: var(--amber-ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+/* The haze: the roadside at dusk, almost invisible, anchored to the bottom of open ground. */
+.haze {
+  position: relative;
+  isolation: isolate;
+}
+
+.haze::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(45%, 520px);
+  background: var(--haze);
+  -webkit-mask: var(--scene) center bottom / cover no-repeat;
+  mask: var(--scene) center bottom / cover no-repeat;
+  pointer-events: none;
+}
+
+.haze-roadside {
+  --scene: url("haze-roadside.webp");
+}
+
+.haze-station {
+  --scene: url("haze-station.webp");
+}
+
+/* Hero */
+.hero {
+  padding: 24px 0 72px;
+  overflow: hidden;
+}
+
+.hero .wrap {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin: 24px 0 16px;
+  max-width: 14em;
+}
+
+.hero .lead {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  max-width: 34em;
+  margin: 0 0 28px;
+}
+
+.hero .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.hero .actions .button {
+  margin: 0;
+}
+
+.hero .actions .muted {
+  font-size: 0.9rem;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+}
+
+.facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.facts .ic {
+  width: 20px;
+  height: 20px;
+  color: var(--good);
+}
+
+/* Device frames: quiet bezels in the app's raised surface. */
+.phone {
+  display: block;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  padding: 9px;
+  box-shadow: var(--elevation-2);
+}
+
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 26px;
+  background: var(--ground);
+}
+
+.tablet {
+  display: block;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 10px;
+  box-shadow: var(--elevation-2);
+}
+
+.tablet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 13px;
+  background: var(--ground);
+}
+
+.stage {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.stage .tablet {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    padding: 40px 0 96px;
+  }
+
+  .hero .wrap {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 56px;
+  }
+
+  /* The tablet at the top right, the phone in front of it at the bottom left. */
+  .stage {
+    max-width: none;
+    aspect-ratio: 1 / 0.74;
+  }
+
+  .stage.tall {
+    aspect-ratio: 1 / 0.84;
+  }
+
+  .stage .tablet {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 82%;
+  }
+
+  .stage .phone {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 32%;
+    padding: 7px;
+    border-radius: 28px;
+  }
+
+  .stage .phone img {
+    border-radius: 21px;
+  }
+}
+
+/* The pump display: four figures, set large. */
+.figures {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.figures ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0 auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.figures li {
+  padding: 20px 8px 20px 0;
+  max-width: none;
+}
+
+.figures b {
+  display: block;
+  font-size: clamp(2.2rem, 1.6rem + 2vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.figures b small {
+  font-size: 0.45em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-muted);
+  margin-left: 0.15em;
+}
+
+.figures span {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+@media (min-width: 48rem) {
+  .figures ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .figures li + li {
+    border-left: 1px solid var(--line);
+    padding-left: 24px;
+  }
+}
+
+/* Features: a screen beside its story, alternating sides. */
+.section {
+  padding: 80px 0 0;
+}
+
+.section > .wrap > h2,
+.section-head h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: 40px;
+}
+
+.section-head p {
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.feature {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.feature + .feature {
+  border-top: 1px solid var(--line);
+}
+
+.feature .phone {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.feature h3 {
+  font-size: clamp(1.4rem, 1.15rem + 1vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 12px;
+}
+
+.feature p {
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+
+.ticks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ticks li {
+  position: relative;
+  padding: 10px 0 10px 32px;
+  border-top: 1px solid var(--line);
+}
+
+.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  background: var(--amber-ink);
+  -webkit-mask: url("icons/done.svg") center / contain no-repeat;
+  mask: url("icons/done.svg") center / contain no-repeat;
+}
+
+.energies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.energies li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.energies li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dot, var(--ink-muted));
+}
+
+.vehicles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 4px 0 20px;
+  color: var(--ink-muted);
+}
+
+.vehicles .ic {
+  width: 28px;
+  height: 28px;
+}
+
+@media (min-width: 48rem) {
+  .feature {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 64px;
+    padding: 56px 0;
+  }
+
+  .feature .phone {
+    margin: 0;
+    justify-self: center;
+  }
+
+  .feature.flip .shot {
+    order: 2;
+  }
+}
+
+/* Big screen */
+.big .tablet {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.big .note {
+  text-align: center;
+  color: var(--ink-muted);
+  margin: 20px auto 0;
+}
+
+/* Everything else: a quiet grid of tiles. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tiles li {
+  max-width: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--elevation-1);
+}
+
+.tiles .ic {
+  color: var(--amber-ink);
+  margin-bottom: 12px;
+}
+
+.tiles h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.tiles p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Get it */
+.get {
+  padding: 80px 0 120px;
+}
+
+.get .card {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 28px 28px 24px;
+  text-align: center;
+  box-shadow: var(--elevation-1);
+}
+
+.get .card h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+.get .card p {
+  margin: 8px auto;
+}
+
+.get .card .button {
+  margin: 16px 0 8px;
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 8px;
+}
+
+.platforms li {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+.platforms li.now {
+  color: var(--ink);
+  border-color: var(--amber-ink);
+  background: var(--amber-soft);
+}
+
+/* Support and privacy, side by side. */
+.pair {
+  display: grid;
+  gap: 12px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.pair > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 4px 20px 8px;
+  box-shadow: var(--elevation-1);
+}
+
+.pair h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pair h3 .ic {
+  color: var(--amber-ink);
+  width: 22px;
+  height: 22px;
+}
+
+.pair p {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 48rem) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.home footer {
+  padding-top: 0;
 }
