@@ -99,11 +99,20 @@ header,
 footer {
   max-width: 44rem;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 12px;
+}
+
+@media (min-width: 40rem) {
+  main,
+  header,
+  footer {
+    padding: 0 24px;
+  }
 }
 
 header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
@@ -155,6 +164,15 @@ h3 {
 p,
 li {
   max-width: 70ch;
+  overflow-wrap: break-word;
+}
+
+code {
+  overflow-wrap: anywhere;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {
@@ -238,12 +256,16 @@ a:focus-visible,
 .home header,
 .home footer,
 .home .wrap {
-  max-width: 72rem;
-  padding-left: 16px;
-  padding-right: 16px;
+  max-width: 80rem;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 @media (min-width: 40rem) {
+  .home main {
+    padding: 0;
+  }
+
   .home header,
   .home footer,
   .home .wrap {
@@ -264,7 +286,7 @@ a:focus-visible,
 .home header nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px 20px;
   font-size: 0.95rem;
 }
 
@@ -508,7 +530,7 @@ a:focus-visible,
 
 .stage {
   position: relative;
-  max-width: 300px;
+  max-width: 240px;
   margin: 0 auto;
   width: 100%;
 }
@@ -529,7 +551,8 @@ a:focus-visible,
 
   /* The tablet at the top right, the phone in front of it at the bottom left. */
   .stage {
-    max-width: none;
+    max-width: 600px;
+    justify-self: end;
     aspect-ratio: 1 / 0.74;
   }
 
@@ -652,7 +675,7 @@ a:focus-visible,
 
 .feature .phone {
   width: 100%;
-  max-width: 280px;
+  max-width: 220px;
   margin: 0 auto;
 }
 
@@ -742,6 +765,7 @@ a:focus-visible,
   }
 
   .feature .phone {
+    max-width: 240px;
     margin: 0;
     justify-self: center;
   }
@@ -753,7 +777,7 @@ a:focus-visible,
 
 /* Big screen */
 .big .tablet {
-  max-width: 60rem;
+  max-width: 52rem;
   margin: 0 auto;
 }
 
@@ -766,7 +790,7 @@ a:focus-visible,
 /* Everything else: a quiet grid of tiles. */
 .tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
   gap: 12px;
   list-style: none;
   padding: 0;
@@ -778,7 +802,7 @@ a:focus-visible,
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: var(--elevation-1);
 }
 
@@ -807,7 +831,7 @@ a:focus-visible,
 .get .card {
   max-width: 44rem;
   margin: 0 auto;
-  padding: 28px 28px 24px;
+  padding: 20px 16px;
   text-align: center;
   box-shadow: var(--elevation-1);
 }
@@ -861,7 +885,7 @@ a:focus-visible,
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 4px 20px 8px;
+  padding: 4px 16px 8px;
   box-shadow: var(--elevation-1);
 }
 
