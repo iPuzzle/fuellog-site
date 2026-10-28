@@ -4,6 +4,7 @@ Easy Fuel Log's public pages, served by GitHub Pages at <https://ipuzzle.github.
 
 - the home and support page, in [English](index.html) and [Ukrainian](uk/index.html);
 - the privacy policy, in [English](privacy/index.html) and [Ukrainian](uk/privacy/index.html);
+- the terms of use, in [English](terms/index.html) and [Ukrainian](uk/terms/index.html);
 - the desktop installers of each beta and release, under [Releases](https://github.com/iPuzzle/fuellog-site/releases).
 
 The pages are plain HTML and CSS, with no build step and no scripts. They are written alongside the
