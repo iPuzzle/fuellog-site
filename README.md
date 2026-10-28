@@ -10,5 +10,7 @@ The pages are plain HTML and CSS, with no build step and no scripts. They are wr
 app, so that the privacy policy always matches what the app does, and published here from it.
 Questions: easyfuellog@gmail.com.
 
-The font is Martian Mono, under the SIL Open Font License ([assets/fonts/OFL.txt](assets/fonts/OFL.txt)).
-The icons, the logo and the social cards in `assets/` are the app's brand kit's, copied there by the app's build.
+The font is Roboto, with the hryvnia sign added, under the SIL Open Font License
+([assets/fonts/Roboto-OFL.txt](assets/fonts/Roboto-OFL.txt)).
+The icons, the logo and the social cards in `assets/` are the app's brand kit's, and the fonts the design
+system's, copied there by the app's build.
